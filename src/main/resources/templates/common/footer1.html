@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="footerLayout1">
+<head>
+  
+  
+  <!-- css  -->
+  <link th:href=@{/css/boxicons.min.css} rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link th:href=@{/css/footer1.css} rel="stylesheet"/>
+  
+
+</head>
+<body>
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>약플러스</h3>
+            <p>
+             서울 강남구 테헤란로 10길 9 <br>
+              KH정보교육원 강남지원 2관<br>
+              4층 P반 약플조<br><br>
+              <strong>Phone:</strong> +82 0507 1400 2037<br>
+              <strong>Email:</strong> Yakplus@naver.com<br>
+            </p>
+          </div>
+
+
+<!-- 
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>개인정보처리방침</h4>
+            <ul>
+              
+              <li><i class="bx bx-chevron-right"></i> <a href="#">고객 개인정보방침</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">관리자 개인정보방침</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Website 약관방침</a></li>
+              
+            </ul>
+          </div>
+ -->
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>고객센터</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/board/list">1:1문의</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">상담사연결</a></li>
+            </ul>
+          </div>
+
+          
+   <div class="col-lg-3 col-md-6 footer-links">
+            <h4>소셜 네트워크</h4>
+            <p>실시간 소통하기</p>
+            <div class="social-links mt-3">
+              <a href="https://twitter.com/home" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="https://www.facebook.com/" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://www.instagram.com" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://www.google.com/" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="https://kr.linkedin.com/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div> 
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- 맨아래-->
+    <div class="container footer-bottom clearfix">
+
+      <div class="copyright" style="text-align: center;">
+        &copy; Copyright <strong><span>악플</span></strong>. 더욱 더 안심하고 신뢰할 수 있는 서비스를 제공하기 위해서 최선을 다하고 있습니다.
+      </div>
+      
+    </div>
+
+
+  </footer><!-- End Footer -->
+
+
+
+
+  <!-- 위로 올라가는 버튼 -->
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i></a>
+
+  
+  <!-- Vendor JS Files -->
+  <script th:src=@{/js/main2.js}></script>
+  
+
+</body>
+</th:block>
+</html>

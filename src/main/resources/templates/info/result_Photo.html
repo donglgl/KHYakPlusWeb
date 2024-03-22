@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="/common/header1::headerLayout1">
+</th:block>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색기록 사진형</title>
+  <link rel="stylesheet" th:href="@{/css/result_Photo.css}" />
+
+
+    <script defer src="./js/result.js"></script>
+    <script defer src="./js/jquery-3.7.1.min.js"></script>
+    
+<!-- 부트스트랩 -->
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+<script
+	th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js}"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+	
+   
+</head>
+
+<body>
+
+
+    <img src="../images/med1.jpg" class="img-1" alt="result_Photo_img">
+<section>
+
+   
+<div class="view-button">
+<!-- 의약품 드롭박스-->
+    <div class="dropdown">
+        <select id="categorySelect" class="btn btn-secondary dropdown-toggle" aria-labelledby="dropdownMenuButton">
+            <option class="dropdown-item" value="medi">의약품</option>
+            <option class="dropdown-item" value="general">일반의약품</option>
+            <option class="dropdown-item" value="special">전문의약품</option>
+        </select>
+    </div>
+    
+
+
+    
+    
+  
+
+
+<!-- 사진형/목록형 -->
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+    <button class="btn btn-outline-primary photo my-custom-class" onclick="repeat1()">사진형</button>
+    <button class="btn btn-outline-primary list my-custom-class" onclick="repeat2()">목록형</button>
+</div>
+
+</div>
+
+
+    <!--리스트-->
+<section class="container2">
+    <div>
+        <ul class="list-container">
+            <li class="list-item" th:each="item : ${list}" th:classappend="${item.etcOtcName == '일반의약품'} ? 'general' : (${item.etcOtcName == '전문의약품'} ? 'special' : '')">
+               <div class="classify_Box">
+                <span class="classify_A" th:if="${item.etcOtcName == '일반의약품'}">일반</span>
+                <span class="classify_B" th:if="${item.etcOtcName == '전문' or item.etcOtcName == '전문의약품'}">전문</span>
+                <span class="classify_c" th:if="${item.etcOtcName == '전문,희귀'}">희귀</span>
+                </div>
+                <a th:if="${item.itemSeq != null}" th:href="@{'/detail/' + ${item.itemSeq}}">
+                    <img th:src="${item.itemImage}" alt="Item Image">
+                </a>
+                <p class="list-detail">
+                    <a th:if="${item.itemSeq != null}" th:href="@{'/detail/' + ${item.itemSeq}}" th:text="${item.itemName}" class="name"></a>
+                </p>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- 검색창 -->
+<div class="search-box-container">
+    <form action="/processSearch" method="GET">
+        <div class="input-group">
+            <select id="searchOption" class="btn btn-outline-secondary dropdown-toggle">
+                <option class="dropdown-item" value="title">제품명</option>
+                <option class="dropdown-item" value="ent">제조사</option>
+                <option class="dropdown-item" value="all">전체</option>
+            </select>
+            <input type="text" class="form-control" name="title" aria-label="Text input with dropdown button" placeholder="제품명을 입력하세요" id="searchInput">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+        </div>
+    </form>
+</div>
+    
+</section>
+
+
+
+
+
+<!--  페이징 처리  -->
+
+<div class="demo">
+    <nav aria-label="Page navigation" class="Page-number pagination-outer">
+        <ul class="pagination justify-content-center">
+            <!-- 이전 버튼 -->
+            <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item' ">
+                <a class="page-link"
+                   th:href="@{processSearch(title=${title},pageNo=${currentPage - 5}, pageSize=${pageSize})}">&laquo;</a>
+            </li>
+
+            <!-- 페이지 번호 링크 -->
+            <li th:each="page : ${pages}"
+                th:class="${currentPage == page} ? 'page-item active' : 'page-item' ">
+                <a class="page-link"
+                   th:href="@{processSearch(title=${title},pageNo=${page}, pageSize=${pageSize})}"
+                   th:text="${page}"></a>
+            </li>
+
+            <!-- 다음 버튼 -->
+            <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item' ">
+                <a class="page-link"
+                   th:href="@{processSearch(title=${title},pageNo=${currentPage + 5}, pageSize=${pageSize})}">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+</section>
+<style>
+:root {
+
+    --color-primary: #D5ECF2; 
+    --color-nav: #F4F5EF; 
+    --color-notice: #1B1B31; 
+    --color-warning: #95C8D4; 
+    --color-white: #FCFEFE; 
+    --color-sub-blue: #0577BD; 
+    --color-green: #2BA69A; 
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+section{
+	font-family: 'GmarketSansMedium';
+}
+
+.container .container2{
+
+    display: block;
+    box-sizing: border-box;
+    width: 1400px; 
+    margin: 10px;
+}
+
+.img-1{
+    margin-top: 0px;
+    width: 100%;
+    height: 600px;
+}
+
+
+
+
+
+/*검색창*/
+.search-box-container{
+ 
+	width:100%;
+	 height:150px;
+}
+
+.input-group{
+    height: 55px;
+}
+.search-box-container{
+	margin-left:320px;
+    margin-top: 50px;
+    width: 750px;
+    
+}
+.search-box-container .form-control:focus {
+    border-color: #2ba69a !important;
+    box-shadow: 0 0 0 0.25rem rgb(43 166 154 / 37%) !important;
+}
+
+.search-box-container .btn {
+	width:120px;
+	text-align: center;
+    background-color: #2BA69A; 
+    border-color: #2BA69A;
+    color: whitesmoke; 
+    font-size:18px;  
+}
+.search-box-container .btn:hover {
+ background-color: #2BA69A; 
+    border-color: #2BA69A; 
+    color: white;
+	box-shadow: 5px 5px 0px #1c6760;
+}
+
+.search-box-container .btn .btn-outline-secondary .dropdown-toggle:hover {  
+  background-color: #2BA69A !important; 
+    border-color: #2BA69A !important; ; 
+    color: white !important;
+}
+
+
+/*의약품 드롭박스 & 사진형목록형*/
+.view-button{
+	margin-top:80px;
+	display: flex;
+    justify-content: flex-end;
+    margin-right:40px;
+	height: 50px;
+}
+
+
+.view-button .btn-secondary {
+    background-color:#95C8D4; 
+    border-color: #95c8d4; 
+    color: white; 
+ 	height: 50px;
+    margin-right:10px;
+}
+
+.view-button .btn-secondary:hover {
+    background-color: #2BA69A; 
+    border-color: #2BA69A; 
+    color: white;
+	box-shadow: 5px 5px 0px #278a81;
+}
+
+
+.view-button .btn-outline-primary {
+     background-color:#89c5d3; 
+    border-color: #95c8d4;
+    color: white; 
+ 	height: 50px;
+    margin-right:3px;
+}
+
+
+
+.view-button .btn-outline-primary:hover {
+ background-color: #2BA69A; 
+    border-color: #2BA69A; 
+    color: white;
+	box-shadow: 5px 5px 0px #278a81;
+}
+
+
+
+
+/*리스트*/
+
+  .list-container {
+  
+    width: 1400px;
+    height: auto;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top:40px;
+    
+}
+
+.list-item {
+	display: flex;
+    flex-direction: column;
+    flex: 0 0 18%;
+	height:290px;
+    margin:10px;
+    border:1px solid #9e9e9e80;
+    border-radius: 10px;
+	/* 가로 길이 | 세로 길이 | 흐림 정도 | 그림자 색상 */
+    box-shadow: 5px 5px 10px #9e9e9e36;
+}
+.list-item:hover{
+	border:1px solid #00000082;
+	    border-radius: 10px;
+    box-shadow:  5px 5px 2px #00000082;
+}
+
+.classify_Box{
+	margin:8px;
+	margin-top:15px;
+    height: auto;
+}
+
+.classify_A{
+	
+    border: 2px solid green;
+    border-radius: 10px;
+    color: green;
+    padding: 5px;
+}
+.classify_B{
+	
+    border: 2px solid red;
+    border-radius: 10px;
+    color: red;
+    padding: 5px;
+}
+.classify_c{
+	border: 2px solid #800080;
+    border-radius: 10px;
+    color: #800080;
+    padding: 5px;
+}
+
+
+.list-item img {
+	
+   
+    border-radius: 0px;
+    width: 100%;
+    height: 150px;
+    margin-top:8px;
+    margin-bottom:10px;
+}
+.list-detail{
+
+	margin: 8px;
+	text-align: center;
+	margin-bottom:15px;
+	
+}
+
+
+.list-detail a.name {
+     font-size: 17px !important;
+    color: #1B1B31;
+    text-decoration: none;
+}
+
+.tag-container{
+    padding: 10px;
+    margin-left: 1px;
+    margin-bottom: 5px;;
+  
+}
+.tag{
+
+    border:2px solid #0577BD;
+    border-radius: 5px;
+    color:#0577BD;
+    padding: 5px;
+
+}
+
+
+
+
+/* 페이지네이션 */
+.pagination-outer {
+    text-align: center;
+}
+
+.pagination {
+    font-family: 'Poppins', sans-serif;
+    display: inline-flex;
+    position: relative;
+    justify-content: center;
+}
+
+.pagination li a.page-link {
+    color: #1e64b5;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    margin: 0 5px;
+    border: none;
+    border-radius: 0;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+
+.pagination li a.page-link:hover, .pagination li a.page-link:focus,
+.pagination li.active a.page-link:hover, .pagination li.active a.page-link {
+    color: #fff;
+    background: transparent;
+}
+
+.pagination li a.page-link:before {
+    content: '';
+    background-color: #e7e7e7;
+    height: 100%;
+    width: 100%;
+    transform: perspective(100px) rotateX(50deg);
+    transform-origin: bottom center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: all 0.3s ease 0s;
+}
+
+.pagination li a.page-link:hover:before, .pagination li a.page-link:focus:before,
+.pagination li.active a.page-link:hover:before, .pagination li.active a.page-link:before {
+    background-color: #2ba69a;
+    transform: perspective(100px) rotateX(0);
+}
+
+@media only screen and (max-width: 480px) {
+    .pagination {
+        font-size: 0;
+        display: inline-block;
+    }
+    .pagination li {
+        display: inline-block;
+        vertical-align: top;
+        margin: 10px 0;
+    }
+
+</style>
+
+<script>
+    // 페이지가 로드될 때 필터링 함수를 호출하여 초기 필터링을 수행합니다.
+    window.onload = function() {
+        filterResults();
+    };
+
+    // 검색 결과 전체에 대해 필터링을 수행하는 함수입니다.
+    function filterResults() {
+        var selectedValue = document.getElementById('categorySelect').value;
+        var listItems = document.querySelectorAll('.list-item');
+
+        listItems.forEach(function(item) {
+            item.style.display = 'none';
+        });
+
+        if (selectedValue === 'medi') {
+            listItems.forEach(function(item) {
+                item.style.display = 'block';
+            });
+        } else {
+            var selectedItems = document.querySelectorAll('.' + selectedValue);
+            selectedItems.forEach(function(item) {
+                item.style.display = 'block';
+            });
+        }
+    }
+
+    // categorySelect의 변경에 대한 이벤트 리스너를 등록합니다.
+    document.getElementById('categorySelect').addEventListener('change', filterResults);
+    
+    function selectCategory(category) {
+        // 클릭한 버튼의 텍스트를 드롭다운 토글 버튼의 텍스트로 설정
+        document.getElementById('searchDropdownToggle').textContent = category;
+    }
+
+
+
+    
+    document.getElementById('searchOption').addEventListener('change', function() {
+        var selectedValue = this.value;
+        
+        if(selectedValue =='all'){
+        	document.getElementById('searchInput').setAttribute('name', 'All');
+        	document.getElementById('searchInput').setAttribute('placeholder', '검색어를 입력하세요');
+        }else if (selectedValue === 'title') {
+            document.getElementById('searchInput').setAttribute('name', 'title');
+            document.getElementById('searchInput').setAttribute('placeholder', '제품명을 입력하세요');
+        }else if (selectedValue === 'ent') {
+            document.getElementById('searchInput').setAttribute('name', 'ent');
+            document.getElementById('searchInput').setAttribute('placeholder', '제조사를 입력하세요');
+        }
+    });
+    
+ 
+ 
+    
+    
+    //검색창 드롭박스 
+    function search(){
+    document.getElementById('searchOption').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if  (selectedValue === 'title') {
+            document.getElementById('searchInput').setAttribute('name', 'title');
+            document.getElementById('searchInput').setAttribute('placeholder', '제품명을 입력하세요');
+        } else if (selectedValue === 'ent') {
+            document.getElementById('searchInput').setAttribute('name', 'ent');
+            document.getElementById('searchInput').setAttribute('placeholder', '제조사를 입력하세요');
+        }
+    })
+    };
+    
+    
+    
+    
+    
+    //사진형 목록형 버튼
+ 
+    function repeatSearch1() {
+        // 현재 검색된 URL에서 쿼리 매개변수를 추출합니다.
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchKeyword = urlParams.get('title'); // 현재 검색어
+        
+       // 현재 검색어가 있을 경우에만 검색을 다시 수행합니다.
+        if (searchKeyword) {
+            // 현재 검색에 사용된 쿼리 매개변수를 새로운 페이지로 전달하여 검색을 다시 수행합니다.
+            const newUrl = 'http://localhost:9080/processSearch?title=' + encodeURIComponent(searchKeyword);
+            
+            // 새로운 페이지로 이동합니다.
+            window.location.href = newUrl;
+        } else {
+            console.log('현재 검색어가 없습니다.');
+        }
+    }
+
+    function repeatSearch2() {
+        // 현재 검색된 URL에서 쿼리 매개변수를 추출합니다.
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchKeyword = urlParams.get('title'); // 현재 검색어
+        
+        // 현재 검색어가 있을 경우에만 검색을 다시 수행합니다.
+        if (searchKeyword) {
+            // 현재 검색에 사용된 쿼리 매개변수를 새로운 페이지로 전달하여 검색을 다시 수행합니다.
+            const newUrl = 'http://localhost:9080:/processSearch/list?title=' + encodeURIComponent(searchKeyword);
+            
+            // 새로운 페이지로 이동합니다.
+            window.location.href = newUrl;
+        } else {
+            console.log('현재 검색어가 없습니다.');
+        }
+    }
+    
+   
+    //의약품 드롭다운
+    document.getElementById('categorySelect').addEventListener('change', function() {
+        var selectedValue = this.value; // 선택된 옵션의 값 가져오기
+        var listItems = document.querySelectorAll('.list-item'); // 모든 list-item 요소 선택
+        
+        // 모든 list-item 요소에 대해 숨김 처리
+        listItems.forEach(function(item) {
+            item.style.display = 'none';
+        });
+        
+        // 선택된 옵션 값에 따라 해당하는 클래스를 가진 요소들만 보이도록 설정
+        if (selectedValue === 'medi') {
+            listItems.forEach(function(item) {
+                item.style.display = 'block';
+            });
+        } else {
+            var selectedItems = document.querySelectorAll('.' + selectedValue); // 선택된 옵션 값과 같은 클래스를 가진 요소들 선택
+            selectedItems.forEach(function(item) {
+                item.style.display = 'block';
+            });
+        }
+    });
+
+    
+</script>
+
+
+<th:block th:replace="/common/footer1::footerLayout1"></th:block>
+</body>
+</html>

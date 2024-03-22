@@ -1,0 +1,258 @@
+:root {
+
+    --color-primary: #D5ECF2; 
+    --color-nav: #F4F5EF; 
+    --color-notice: #1B1B31; 
+    --color-warning: #95C8D4; 
+    --color-white: #FCFEFE; 
+    --color-sub-blue: #0577BD; 
+    --color-green: #2BA69A; 
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+section{
+	font-family: 'GmarketSansMedium';
+}
+.container .container2{
+    display: block;
+    box-sizing: border-box;
+    width: 1400px; 
+    margin: 10px;
+}
+
+.img-2{
+    margin-top: 0px;
+    width: 100%;
+    height: 600px;
+
+
+}
+
+
+
+
+
+/*검색창*/
+.search-box-container{
+
+	width:100%;
+	 height:100px;
+}
+
+.input-group{
+    height: 55px;
+}
+.search-box-container{
+	margin-left:200px;
+    margin-top: 50px;
+    width: 1000px;
+    
+}
+.search-box-container .form-control:focus {
+    border-color: #2ba69a !important;
+    box-shadow: 0 0 0 0.25rem rgb(43 166 154 / 37%) !important;
+}
+.search-box-container .btn {
+	width:120px;
+	text-align: center;
+    background-color: #2BA69A; 
+    border-color: #2BA69A;
+    color: whitesmoke; 
+    font-size:18px;  
+}
+.search-box-container .btn:hover {
+ background-color: #2BA69A; 
+    border-color: #2BA69A; 
+    color: white;
+	box-shadow: 5px 5px 0px #1c6760;
+}
+
+
+.search-box-container .btn .btn-outline-secondary .dropdown-toggle:hover {  
+  background-color: #2BA69A !important; 
+    border-color: #2BA69A !important; ; 
+    color: white !important;
+}
+
+
+/*의약품 드롭박스 & 사진형목록형*/
+.view-button{
+	 width: 1400px;
+	display: flex;
+    justify-content: flex-end;
+    margin-right:15px;
+	height: 50px;
+	
+}
+
+
+.view-button .btn-secondary {
+    background-color:#95C8D4; 
+    border-color: #ccc; 
+    color: white; 
+ 	height: 50px;
+    margin-right:10px;
+}
+
+.view-button .btn-secondary:hover {
+    background-color: #2BA69A; 
+    border-color: #2BA69A; 
+    color: white;
+}
+
+.view-button .btn-outline-primary {
+     background-color:#89c5d3; 
+    border-color: #95c8d4;
+    color: white; 
+ 	height: 50px;
+    margin-right:3px;
+}
+
+
+
+.view-button .btn-outline-primary:hover {
+ background-color: #2BA69A; 
+    border-color: #2BA69A; 
+    color: white;
+	box-shadow: 5px 5px 0px #278a81;
+}
+
+
+
+
+
+/*리스트*/
+
+#typeTable {
+	margin-top:20px;
+    text-align: center;
+    border-collapse: collapse;
+    border-top: 2px solid #cccccc8f;
+    width: 1400px;
+
+}
+
+.typeTable th {
+	font-size:18px!important;
+	color:#286684;
+	
+	border-top:2px solid #cccccc8f;
+    border-bottom: 2px solid #cccccc8f;
+    background-color: #D5ECF2;
+    padding: 8px;
+    height: 60px;
+    text-align: center;
+
+}
+
+.typeTable td {
+	font-size:15px !important;
+
+    border-bottom: 1px solid #cccccc82;
+    border-right: 1px solid #cccccc85;
+    text-align: center;
+    
+    vertical-align: middle;
+
+}
+.typeTalbe td a{
+	
+	text-decoration:none !important;
+    
+}
+
+.typeTable td:last-child {
+    border-right: none;
+}
+
+.table-img {
+    padding: 10px;
+    border-radius: 15px;
+    width: 85%;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/*페이지네이션*/
+.pagination-outer {
+    text-align: center;
+}
+
+.pagination {
+    font-family: 'Poppins', sans-serif;
+    display: inline-flex;
+    position: relative;
+    justify-content: center;
+}
+
+.pagination li a.page-link {
+    color: #1e64b5;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    margin: 0 5px;
+    border: none;
+    border-radius: 0;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+
+.pagination li a.page-link:hover, .pagination li a.page-link:focus,
+.pagination li.active a.page-link:hover, .pagination li.active a.page-link {
+    color: #fff;
+    background: transparent;
+}
+
+.pagination li a.page-link:before {
+    content: '';
+    background-color: #e7e7e7;
+    height: 100%;
+    width: 100%;
+    transform: perspective(100px) rotateX(50deg);
+    transform-origin: bottom center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: all 0.3s ease 0s;
+}
+
+.pagination li a.page-link:hover:before, .pagination li a.page-link:focus:before,
+.pagination li.active a.page-link:hover:before, .pagination li.active a.page-link:before {
+    background-color: #00b29a;
+    transform: perspective(100px) rotateX(0);
+}
+
+@media only screen and (max-width: 480px) {
+    .pagination {
+        font-size: 0;
+        display: inline-block;
+    }
+    .pagination li {
+        display: inline-block;
+        vertical-align: top;
+        margin: 10px 0;
+    }
+}

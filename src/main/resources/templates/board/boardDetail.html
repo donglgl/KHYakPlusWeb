@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+		
+<th:block th:replace="/common/header1::headerLayout1"></th:block>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>boardDetail.html</title>
+
+
+<!-- 부트스트랩 CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+
+
+
+<style>
+
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 1400px;
+	width: 100%;
+	
+	
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/* 전체  */
+.myAllBox{
+    margin-top:250px;
+}
+
+
+
+
+.mainHeader {
+	text-align: center;
+	height: 210px;
+	
+	font-family: 'GmarketSansMedium';	
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.headerTitle {
+	font-size: 50px;
+	color: #1B1B31;
+	font-weight: bolder;
+	margin-bottom: 30px;
+}
+
+
+
+
+
+/* 메뉴 */
+.menuDetail {
+	font-size: 18px;
+	font-weight: bolder;
+	border-right: 3px solid lightgray;
+	padding-right: 18px;
+	margin-left: 18px;
+	text-decoration: none;
+	color: gray;
+}
+
+.menuDetail:last-child {
+	border-right: none;
+}
+
+.menuDetail:hover {
+	color: #95C8D4;
+}
+
+
+
+
+/* 상세페이지 테이블 */
+.table-condensed {
+	width: 800px;
+}
+
+.tableHead {
+	font-size: 30px;
+	font-weight: bolder;
+	color: #2BA69A;
+}
+
+.tableHeadLine {
+	border: 3px solid #2BA69A;
+	width: 800px;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+.tableTitle {
+	color: black;
+	font-size: 16px;
+	font-weight: bolder;
+	padding-bottom: 22px;
+}
+
+
+
+
+/* 버튼 */
+.btn {
+	color: #fff;
+	background-color: transparent;
+	font-family: 'Raleway', sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	text-transform: capitalize;
+	padding: 6px 32px 6px;
+	border: none;
+	border-radius: 20px;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+	transition: all 0.3s ease 0s;
+}
+
+.btn:focus, .btn:hover {
+	color: #2BA69A;
+	background-color: transparent;
+}
+
+.btn:before, .btn:after {
+	content: '';
+	background-color: #2BA69A;
+	height: 100%;
+	width: 100%;
+	border-radius: inherit;
+	transform-origin: bottom center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -1;
+	transition: all 0.25s ease 0s;
+}
+
+.btn:after {
+	background-color: transparent;
+	height: 15px;
+	width: 15px;
+	border: 3px solid #2BA69A;
+	border-left: none;
+	border-bottom: none;
+	border-radius: 0;
+	opacity: 0;
+	transform: translateY(-50%) rotate(45deg);
+	top: 43%;
+}
+
+.btn:focus:before, .btn:hover:before {
+	opacity: 1;
+	transform: perspective(700px) rotateX(-87deg);
+}
+
+.btn:focus:after, .btn:hover:after {
+	opacity: 1;
+	left: calc(100% - 32px);
+}
+
+@media only screen and (max-width: 767px) {
+	.btn {
+		margin-bottom: 20px;
+	}
+}
+
+
+
+
+/* 댓글창 */
+.comment-section {
+	width: 800px;
+	margin: 30px auto;
+	background-color: #fff;
+	border: 1px solid #ced4da;
+	padding: 16px;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-top: 100px;
+}
+
+.comment-form {
+    margin-bottom: 15px; 
+	display: flex;
+}
+
+.comment-textarea {
+	flex-grow: 1;
+	padding: 8px;
+	margin-right: 8px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	width: calc(100% - 100px);
+	box-sizing: border-box;
+}
+
+.comment-submit {
+	width: 60px;
+	padding: 8px 16px;
+	background-color: #0577BD;
+	border: none;
+	color: white;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 10px;
+}
+
+.comment {
+	padding: 10px;
+	border-bottom: 1px solid #ced4da;
+}
+
+.comment:last-child {
+	border-bottom: none;
+}
+
+.author, .comment-author {
+	font-weight: bold;
+	color: #333;
+}
+
+.tag, .comment-tag {
+	display: inline-block;
+	background-color: #0577BD;
+	color: white;
+	border-radius: 4px;
+	padding: 2px 4px;
+	font-size: 0.75rem;
+	margin-right: 8px;
+}
+
+.date, .comment-date {
+	color: #999;
+	font-size: 0.875rem;
+}
+
+.content {
+	margin-top: 2px;
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+
+<div class ="myAllBox">
+
+
+	<!-- 헤더 -->
+	<div class="mainHeader">
+
+		<h1 class="headerTitle">1:1 문의하기</h1>
+
+		<!-- 메뉴-->
+		<div class="cateMenu">
+			<span> 
+				<a class="menuDetail" href="/notice/list">공지사항</a> 
+				<a class="menuDetail" href="/board/list">1:1 문의하기</a> 
+				<a class="menuDetail" href="/faq">FAQ</a>
+			</span>
+		</div>
+
+	</div>
+
+
+
+
+
+	<!-- 메인 -->
+	<div class="mainContainer">
+
+
+		<div class="tableHead">
+			<div>문의하기</div>
+			<hr class="tableHeadLine">
+		</div>
+
+
+		<!-- 상세페이지 테이블 -->
+		<div class="table table-condensed">
+
+			<table style="border: lightgray;">
+
+				<tr>
+					<!--번호-->
+					<td class="tableTitle"
+						style="width: 5%; color: #8c8c8c; text-align: center;"
+						th:text="${board.boardNum}"></td>
+
+					<!--카테고리-->
+					<td class="tableTitle" style="width: 8%; color: #8c8c8c;"
+						th:text="${board.boardCate}" name="boardCate"></td>
+
+					<!--제목  -->
+					<td class="tableTitle"
+						style="width: 40%; font-size: 16px; font-weight: bolder;"
+						th:text="${board.boardTitle}"></td>
+
+					<!--글쓴이  -->
+					<td class="tableTitle" style="width: 5%; color: #8c8c8c;"
+						th:text="${board.memId}"></td>
+
+					<!--작성 시간 -->
+					<td class="tableTitle" style="width: 9%; color: #8c8c8c;"
+						th:text="${#dates.format(board.boardDate,'yyyy-MM-dd')}"></td>
+				</tr>
+
+
+				<tr>
+					<!--내용 -->
+					<td colspan="5" style="height: 300px; padding-top: 10px;">
+					
+					   <textarea id="commentParentText" class="form-control col-lg-12" rows="10" readonly
+							     style="width: 100%; border: none; outline: none; box-shadow: none; resize: none;"
+							     th:text="${board.boardContent}"></textarea>
+					</td>
+				</tr>
+
+
+			</table>
+		</div>
+
+
+
+
+		<!-- 버튼 -->
+		<span style='float: right'> 
+		
+			<!-- 수정하기 버튼 (회원만 보임) --> 
+			<a th:href="@{'/board/update/' + ${board.boardNum}}" id="update" th:if="${session.id != null}"
+				class="btn btn-default" role="button">수정하기</a> 
+				
+			<!-- 삭제하기 버튼 (회원만 보임)--> 
+			<a th:href="@{'/board/delete/' + ${board.boardNum}}" id="delete" th:if="${session.id != null}"
+				class="btn btn-default" role="button">삭제하기</a> 
+				
+			<!-- 목록으로 버튼 --> 
+			<a href="/board/list" id="list" class="btn btn-default" role="button">목록으로</a>
+
+		</span>
+
+
+
+
+
+		<!-- 댓글창 -->
+		<div class="comment-section" >
+
+			
+			<div style="font-size: 17px; font-weight: bolder; color: #0577BD; margin-bottom: 7px;">답변</div>
+
+            <!-- 작성폼 (관리자만 보임) -->
+			<form class="comment-form" action="/board/reply" method="post" 
+				  th:if="${#strings.equals(session.id,'admin')}">  
+				    
+				<input type="hidden" name="boardNum" th:value="${board.boardNum}" />
+
+				<input type="hidden" name="adminNum" th:value="${loginMember}" />
+
+				<textarea class="comment-textarea" name="replyContent" rows="3"
+				          placeholder="댓글을 입력하세요" style="outline: none; resize: none;"></textarea>
+
+				<button type="submit" class="comment-submit"
+					    style="font-size: 20px; width: 100px;">등록</button>
+
+			</form>
+
+
+
+			<!-- 출력폼 -->
+			<table class="comment">
+
+
+				<!-- 댓글 있을때 -->
+				<th:block th:if="${ not #lists.isEmpty(replyList)}">
+
+
+					<th:block th:each="reply : ${replyList}">
+
+						<tr>
+							<td style="height: 80px;">
+							
+								<!--관리자 번호 --> 
+								<!-- <span class="author" th:text="${reply.adminNum}"></span> -->
+
+								<!--tag--> 
+								<span class="tag">관리자</span> 
+								
+								<!--등록일--> 
+								<span class="date" th:text="${#dates.format(reply.replyDate,'yyyy-MM-dd')}"></span>
+
+								<!-- 내용 -->
+								<div class="content">
+									<p th:text="${reply.replyContent}"></p>
+								</div>
+
+							</td>
+						</tr>
+
+					</th:block>
+
+				</th:block>
+
+
+
+
+				<!-- 댓글 없을때 -->
+				<th:block th:if="${#lists.isEmpty(replyList)}">
+
+					<p style="text-align: center; margin-bottom: 25px; margin-top: 30px; font-size: 17px; color: #0577BD;">
+						답변이 대기중 입니다.</p>
+
+				</th:block>
+
+			</table>
+
+
+		</div>
+		<!-- 댓글창 끝  -->
+
+
+
+
+
+	</div>
+	<!-- mainCon끝! -->
+
+
+ </div>
+</body>
+<th:block th:replace="/common/footer1::footerLayout1"></th:block>
+</html>

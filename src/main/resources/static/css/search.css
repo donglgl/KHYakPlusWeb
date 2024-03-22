@@ -1,0 +1,196 @@
+:root {
+    --color-primary: #D5ECF2; 
+    --color-nav: #F4F5EF; 
+    --color-notice: #1B1B31; 
+    --color-warning: #95C8D4; 
+    --color-white: #FCFEFE; 
+    --color-sub-blue: #0577BD; 
+    --color-green: #2BA69A; 
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.img-3{
+    margin-top: 0px;
+    width: 100%;
+    height: 600px;
+  
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+section{
+	font-family: 'GmarketSansMedium';
+	width: 1400px;
+}
+
+/*검색창*/
+.search-box-container{
+
+	width:100%;
+	 height:100px;
+}
+
+.input-group{
+    height: 55px;
+}
+.search-box-container{
+	margin-left:200px;
+    margin-top: 50px;
+    width: 1000px;
+    
+}
+.search-box-container .form-control:focus {
+    border-color: #2ba69a !important;
+    box-shadow: 0 0 0 0.25rem rgb(43 166 154 / 37%) !important;
+}
+
+.search-box-container .btn {
+	width:120px;
+	text-align: center;
+    background-color: #2BA69A; 
+    border-color: #2BA69A;
+    color: whitesmoke; 
+    font-size:18px;  
+}
+.search-box-container .btn:hover {
+ background-color: #2BA69A; 
+    border-color: #2BA69A; 
+    color: white;
+	box-shadow: 5px 5px 0px #1c6760;
+}
+
+
+.search-box-container .btn .btn-outline-secondary .dropdown-toggle:hover {  
+  background-color: #2BA69A !important; 
+    border-color: #2BA69A !important; ; 
+    color: white !important;
+}
+
+
+@font-face {
+    font-family: 'PyeongChangPeace-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/*추천검색어*/
+
+a {
+	
+    text-decoration: none !important;
+}
+
+
+
+.recommend-label{
+	
+	font-family: 'PyeongChangPeace-Bold';
+	  font-size: 30px;
+ text-decoration: none;
+    margin-right: 30px;
+	margin-bottom: 30px;
+}
+
+.recommend-search-container {
+   width: 1400px;
+   text-align: center;
+	margin-top: 30px;
+    margin-bottom: 50px;
+ 
+}
+.recommend-search-button {
+    background-color: #D5ECF2; 
+    color: #45565a; 
+    border-radius: 30px;
+    border: #D5ECF2;
+    width: 180px;
+    height: 50px;
+    margin-right: 15px;
+    box-shadow: 5px 5px 3px #91b3bb;
+}
+.recommend-search-button:hover{
+    background-color: #2ba69a; 
+	 border:1px solid#2ba69a;;
+    color: #ffffff;
+    box-shadow: 5px 5px 1px #265460;
+
+}
+
+/*추천상품*/
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(calc(100% + 10px));
+    }
+}
+
+
+.card-container {
+    text-align: center;
+    hight:480px;
+    width: 1400px;
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: hidden;
+    animation: slideRight 20s linear infinite;
+}
+.card-lable {
+	font-family: 'PyeongChangPeace-Bold';
+    font-size: 30px;
+    margin-top: 80px;
+    margin-bottom: 25px;
+    color: #2BA69A;
+}
+
+.card{
+	
+	height:100%;
+   text-align: center;
+}
+.card-img-top {
+    width: 300px;
+    height: 370px;
+}
+
+
+.card-body{
+	width: 100%;
+	height: 110px;
+
+}
+
+.custom-button{
+	margin-top:3px;
+    background-color: #2ba69a;
+    color: #F4F5EF;
+    border:1px solid #2ba69a;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    box-shadow: 3px 3px 2px #124a44;
+}
+.custom-button:hover{
+    background-color: #0577BD;
+    border: 1px solid #014b78;
+    color: #F4F5EF;
+	 box-shadow: 3px 3px 0px #014b78;
+}
+

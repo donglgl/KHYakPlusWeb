@@ -1,0 +1,120 @@
+:root {
+
+
+    --color-primary: #D5ECF2; 
+    --color-nav: #F4F5EF; 
+    --color-notice: #1B1B31; 
+    --color-warning: #95C8D4; 
+    --color-white: #FCFEFE; 
+    --color-sub-blue: #0577BD; 
+    --color-green: #2BA69A; 
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+section{
+	font-family: 'GmarketSansMedium';
+}
+.container1 {
+	
+    font-size:20px;
+	margin-top:200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 1000px;
+    border: 0px solid #f3fbfd;
+    background-color: #f3fbfd;
+    box-shadow: 10px 10px 10px #bbcacdcf;
+    border-radius: 10px;
+
+}
+.container1:hover{
+    border: 0px solid #f3fbfd;
+    background-color: #f3fbfd;
+    box-shadow: 10px 10px 3px #bbcacdcf;
+    
+}
+
+.img-detail {
+    border:1px solid #f3fbfd;
+    border-radius: 40px;
+	height: 350px;
+    width: 300px;
+    margin: 30px;
+}
+
+.custom-table {
+    display: table;
+    text-align: center;
+    height: 300px;
+    width: 1000px;
+}
+
+td#product-price {
+	display:none;
+}
+
+.count-btn{
+    text-align:center;
+    height:10px;
+    background-color:#f3fbfd00 ;
+    width:50px;
+    font-size:30px;
+    color:black;
+    border:1px solid #f3fbfd00 ;
+    
+    margin:5px;
+}
+
+.custom-width {
+    border:2px solid #ccc;
+    border-radius:15px !important;
+    width: 50px !important;
+    height:60px;
+    text-align: center;
+}
+
+.btn-outline-secondary{
+    width: 20px !important;
+   padding: 3px !important;  
+}
+
+
+.btn-primary {
+    font-size:22px !important;
+    margin-top: 50px;
+      margin-bottom:30px;
+    background-color: #2BA69A !important; 
+    border: 1px solid #2BA69A !important;
+    box-shadow: 5px 5px 10px #1c6760;
+    color: white;
+    width: 130px !important;
+    height: 50px !important;
+    
+      
+
+
+ 
+}
+.btn-primary:hover{
+    background-color: #0577BD !important;
+    border:1px solid #0577BD !important;
+	box-shadow: 5px 5px 0px #023554;
+    
+}

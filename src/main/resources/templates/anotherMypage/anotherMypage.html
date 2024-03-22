@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/common/header1::headerLayout1">
+</th:block>
+<head>
+<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+<link rel="stylesheet" th:href="@{/style.css}">
+<script th:src="@{/script.js}" defer="defer" type="text/javascript"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+<script
+	th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js}"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+	
+</head>
+
+<body>
+	<div class="container mt-3">
+		<div class="row ">
+			<div class="col-md-2 ps-0">
+				<div class="card-body info">
+					<img src="/img/product5.png"
+						style="width: 130px; border-radius: 100%"
+						th:src="@{../images/}+${member.MemberImg}"> <br>
+					<h2 th:text="${member.memName}"></h2>
+					<p th:text="${member.memNickName}"></p>
+					<button type="button" class="btn btn-primary btn-sm btn">내정보관리</button>
+					<hr>
+					<div class="infocontainer">
+						<div class="circle">
+							<p th:text="${gender}">여</p>
+							
+						</div>
+						<div class="circle">
+							<p th:text="${age}"></p>
+						</div>
+						<div class="circle">
+							<p>청주시</p>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col">
+							<div
+								class="d-flex justify-content-center align-items-center styled-div">
+								<div style="text-align: center;">
+									<img class="caimg" th:src="@{/img/내약.PNG}"> <span
+										class="big-text" data-text="내약" th:text="${wishcount + '건'}"></span>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="col">
+							<div
+								class="d-flex justify-content-center align-items-center styled-div">
+								<div style="text-align: center;">
+									<img class="caimg" th:src="@{/img/구급상자.PNG}"> <span
+										class="big-text" data-text="구급상자" th:text="${kitcount + '건'}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10 mb-0">
+				<div class="row">
+					<div class="title">
+						<h2 class="maintitle">나의 보관함</h2>
+						<hr>
+					</div>
+					<div class="col-md-12 ps-2 mb-2">
+						<div class="card white-box-ver1">
+							<div class="card-body">
+								<div
+									class="d-flex justify-content-between align-items-center mb-3">
+									<h5 class="card-title fw-bold">카테고리</h5>
+									<button type="button" class="btn btn-primary btn-sm"
+										onclick="openModal()">+카테고리</button>
+								</div>
+								<div id="buttonContainer1">
+									<button th:each="buttonlist : ${buttonlist}"  type="button" id="catebutton"
+										th:onclick="deleteCategory(this)"  class="btn btn-success">
+										<img src="./img/cataimg.png" width="60px" /> <span
+											id="cateNo" th:text="${buttonlist.no}" style="display: none;"></span>
+										<span id="cateName" th:text="${buttonlist.categoryName}"></span><br>
+										<span class="delete-text">삭제</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 내약품 리스트 -->
+					<div class="col-md-12 ps-2 mb-2">
+						<div class="card white-box-ver1">
+							<div class="card-body">
+								<div
+									class="d-flex justify-content-between align-items-center mb-3">
+									<h2 class="card-title fw-bold">내약품리스트</h2>
+									<button type="button" class="btn btn-primary btn-sm"
+										th:onclick="openModal2()">+약품추가</button>
+								</div>
+								<div id="myModalContainer2"></div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col" style="display: none;">NO.</th>
+											<th scope="col">사진</th>
+											<th scope="col">품명</th>
+											<th scope="col">수량</th>
+											<th scope="col">효과.효능</th>
+											<th scope="col">사용기한</th>
+											<th scope="col">소요기간</th>
+											<th scope="col">삭제</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="wishlist : ${wishlist}">
+											<th scope="row" th:text="${wishlist.no}"
+												style="width: 60px; display: none;"></th>
+											<td style="width: 170px;"><img
+												th:src="${wishlist.memImg}"
+												style="width: 100px; height: 80px" /></td>
+											<td th:text="${wishlist.wishName}" style="width: 150px;"></td>
+											<td th:text="${wishlist.count}" style="width: 60px;"></td>
+											<td th:text="${wishlist.wishFun}" style="width: 300px;"></td>
+											<td th:text="${wishlist.endDate}" style="width: 100px;"></td>
+											<td><span th:if="${wishlist.remainDate > 0}"
+												th:text="${wishlist.remainDate + '일 남았습니다.'}"></span> <span
+												th:if="${wishlist.remainDate == 0}" th:text="'금일까지입니다.'"></span>
+												<span th:if="${wishlist.remainDate < 0}"
+												th:text="${(0 - wishlist.remainDate) + '일 지났습니다.'}"
+												style="color: red; font-weight: bold;"></span></td>
+											<td><button type="button" class="btn btn-danger"
+													th:onclick="deleteWish(this)">-</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- 구급약품 리스트 -->
+					<div class="col-md-12 ps-2 mb-2">
+						<div class="card white-box-ver1">
+							<div class="card-body">
+								<div
+									class="d-flex justify-content-between align-items-center mb-3">
+									<h5 class="card-title fw-bold">구급상자</h5>
+									<div>
+										<button type="button" class="btn btn-primary btn-sm"
+											th:onclick="openModal3()">+약품추가</button>
+										<button type="button" class="btn btn-info btn-sm"
+											th:onclick="openModal5()">+구매하기</button>
+									</div>
+								</div>
+								<div id="myModalContainer3"></div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col" style="display: none;">NO.</th>
+											<th scope="col">품명</th>
+											<th scope="col">효과.효능</th>
+											<th scope="col">포장단위</th>
+											<th scope="col">사용기한</th>
+											<th scope="col">소요기간</th>
+											<th scope="col">삭제</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="kitlist : ${kitlist}">
+											<th scope="row" th:text="${kitlist.no}"
+												style="display: none;"></th>
+											<td th:text="${kitlist.kitName}"></td>
+											<td th:text="${kitlist.division}"></td>
+											<td th:text="${kitlist.packaging}"></td>
+											<td th:text="${kitlist.endDate}"></td>
+												<td><span th:if="${kitlist.remainDate > 0}"
+												th:text="${kitlist.remainDate + '일 남았습니다.'}"></span> <span
+												th:if="${kitlist.remainDate == 0}" th:text="'금일까지입니다.'"></span>
+												<span th:if="${kitlist.remainDate < 0}"
+												th:text="${(0 - kitlist.remainDate) + '일 지났습니다.'}"
+												style="color: red; font-weight: bold;"></span></td>
+											<td><button type="button" class="btn btn-danger"
+													onclick="deleteKit(this)">-</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 ps-2 mb-2">
+						<div class="card white-box-ver1">
+							<div class="row row-cols-1 row-cols-md-3 g-4 ">
+								<div id="carouselExampleDark"
+									class="carousel carousel-dark slide"
+									style="height: 520px; width: 100%">
+									<div class="carousel-indicators">
+										<button type="button" data-bs-target="#carouselExampleDark"
+											data-bs-slide-to="0" class="active" aria-current="true"
+											aria-label="Slide 1"></button>
+										<button type="button" data-bs-target="#carouselExampleDark"
+											data-bs-slide-to="1" aria-label="Slide 2"></button>
+										<button type="button" data-bs-target="#carouselExampleDark"
+											data-bs-slide-to="2" aria-label="Slide 3"></button>
+										<button type="button" data-bs-target="#carouselExampleDark"
+											data-bs-slide-to="3" aria-label="Slide 4"></button>
+									</div>
+									<h5 class="card-title fw-bold">나의 추천 리스트</h5>
+									<div class="carousel-inner" style="width: 100%;">
+										<div id="#눈건강" class="carousel-item active"
+											data-bs-interval="10000">
+											<h5 class="card-title fw-bold">#눈건강 추천 리스트</h5>
+											<div class="row justify-content-center">
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image6.coupangcdn.com/image/vendor_inventory/299b/7037efb6be9090a50f9d0e7401ceed4a41626a35960429aa61cac3a075c0.jpg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">GNM 루테인</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image6.coupangcdn.com/image/vendor_inventory/images/2019/03/20/15/4/c7f7db0b-7c09-4a77-9c04-7898647f85f1.jpg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">닥터스베스트 루테인</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image7.coupangcdn.com/image/retail/images/8583883507149256-1d2f6a70-c852-4553-8e42-9dced64db265.jpg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">아이클리어 루테인</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="#장건강" class="carousel-item" data-bs-interval="2000">
+											<h5 class="card-title fw-bold">#장건강 추천 리스트</h5>
+											<div class="row justify-content-center">
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image8.coupangcdn.com/image/rs_quotation_api/kfqhifmx/d5cfac8aff6440cabbab89a80fee4204.jpg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">락토핏 솔루션 2</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image6.coupangcdn.com/image/vendor_inventory/5e8a/b57eb560adf65d7a63802051df3a799709a4a45217aebc962ea129956f7e.jpeg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">펨-도필러스 유산균</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image7.coupangcdn.com/image/vendor_inventory/4468/91d8add2e027d34dcd01bcf798558eac8d7d88d9cd08637eb448de475def.png"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">락토페린10억 유산균</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="#피로회복" class="carousel-item">
+											<h5 class="card-title fw-bold">#피로회복 추천 리스트</h5>
+											<div class="row justify-content-center">
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image7.coupangcdn.com/image/vendor_inventory/a900/bf61f2660df4e522ac05ea30cff2a8111dbf0ed5064e9915cd4e1eaa5abb.jpg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">웰릿 아르맨 아르기닌</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image10.coupangcdn.com/image/retail/images/2023/01/30/12/0/9343d188-5794-4796-bdfe-97fbec1e8690.jpg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">우루샷 멀티 비타민</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image7.coupangcdn.com/image/retail/images/5431238183859371-66b89019-09f7-421b-ab52-cf947d53e562.jpg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">이뮨 듀오 멀티비타맥스</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="#면역기능" class="carousel-item">
+											<h5 class="card-title fw-bold">#면역기능 추천 리스트</h5>
+											<div class="row justify-content-center">
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image7.coupangcdn.com/image/retail/images/eb851efc-18cc-4777-9827-aea14e9d80061004068256983550018.png"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">면역엔 클로렐라</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image7.coupangcdn.com/image/retail/images/3021919987455970-76955cb7-05ee-4b21-855d-30b7e0c1904d.jpg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">내츄럴플러스 프로폴리스</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<div class="card">
+														<img
+															src="https://image10.coupangcdn.com/image/vendor_inventory/699e/b81e88a8529daca0f6a3969b5110e333d9141da02f1e6141d1e79d410997.jpeg"
+															class="card-img-top" alt="...">
+														<div class="card-body">
+															<h5 class="card-title">EPS 다이제스티브 유산균</h5>
+															<p class="card-text"></p>
+															<a href="/item" class="btn btn-primary">상품 담기</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<button class="carousel-control-prev" type="button"
+										data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button"
+										data-bs-target="#carouselExampleDark" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block th:replace="anotherMypage/add::addLayout"></th:block>
+	</div>
+	<footer>
+	 <th:block th:replace="/common/footer1::footerLayout1"></th:block>
+	</footer>
+</body>
+
+</html>

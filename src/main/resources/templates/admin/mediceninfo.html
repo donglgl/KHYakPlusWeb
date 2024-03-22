@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/admincommon/adminheader::headerLayout"></th:block>
+<body>
+	<th:block layout:fragment="content">
+		<main>
+		<div class="container-fluid px-4">
+
+			<div class="container-fluid px-4">
+				<h1 class="mt-4">제품관리</h1>
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item"><a href="/admin">admin</a></li>
+					<li class="breadcrumb-item active">약품</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">약품에 대한 관리를 하는 페이지 입니다</div>
+				</div>
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-table me-1"></i> 약품 설명
+					</div>
+					<div class="card-body">
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>이미지</th>
+									<th>제품 번호</th>
+									<th>카테고리</th>
+									<th>제품 명</th>
+									<th>제품설명</th>
+									<th>가격</th>
+									<th>재고</th>
+									<th>복용</th>
+									<th>삭제</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="list : ${lists}">
+									<td><img th:src="@{../images/} + ${list.itemImgName}" width=100px; /></td>
+									<td th:text="${list.itemNum}"></td>
+									<td th:text="${list.catName}"></td>
+									<td th:text="${list.itemName}"></td>
+									<td th:text="${list.itemContent}"></td>
+									<td th:text="${list.itemPrice}"></td>
+									<td th:text="${list.itemCnt}"></td>
+									<td th:text="${list.itemToday}"></td>
+									<td>
+										<button type="button" class="btn btn-danger" th:onclick="|location.href='@{/admin/delete(itemNum=${list.itemNum})}'|">삭제</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		</main>
+	</th:block>
+</body>
+<th:block th:replace="/admincommon/footer::footerLayout"></th:block>
+</html>

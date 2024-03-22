@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--인코딩방식 변경-->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--오픈그래프 소스-->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="yakpul" />
+<meta property="og:site_title" content="Medical yakpul Korea" />
+<meta property="og:site_description" content="약+ 당신의 증상을 호전시켜주는 진통제" />
+<meta property="og:site_image" content="./favicon.png" />
+<meta property="og:url" content="http://Medical.yakpul" />
+
+<!--트위터 카드(Twitter Cards)-->
+<meta proerty="twitter:card" content="Hello" />
+<meta proerty="twitter:site" content="yakpul" />
+<meta proerty="twitter:title" content="Medical yakpul Korea" />
+<meta proerty="twitter:description" content="약+ 당신의 증상을 호전시켜주는 진통제" />
+<meta proerty="twitter:image" content="./css/yakpul.seo.png" />
+<meta proerty="twitter:url" content="http://Medical.yakpul" />
+<title>Medical yakpul korea</title>
+<!--탭 아이콘 연결 파비곤 연결-->
+<link rel="icon" href="./favicon.png" />
+<!-- 제이쿼리  -->
+<script src ="/js/jquery-3.6.0.min.js"></script>
+<script src = "/js/login.js" ></script>
+
+<!--reset 라이브러리 연결 -->
+<link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
+	rel="stylesheet" />
+<!--구글 아이콘 연결-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link
+	href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+	rel="stylesheet">
+<!--css 연결-->
+<link rel="stylesheet" href="./css/logoin.css" />
+<link rel="stylesheet" href="./css/main2.css" />
+
+<!--구글폰트의 나눔고딕폰트-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<script
+	src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
+    "></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+	integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- 스와이퍼 라이브러리 추가-->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script
+	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script defer src="./js/main.js"></script>
+
+</head>
+
+<body>
+	<header>
+		<!--header 영역의 시작-->
+		<th:block th:replace="/common/header1::headerLayout1">
+		</th:block>
+	</header>
+	<!--header 영역의 끝-->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="Absolute-Center is-Responsive">
+					<div id="logo-container"></div>
+					<div class="col-sm-12 col-md-10 col-md-offset-1">
+						<body class="align">
+							<div class="grid">
+								<form action="/login" method="post" class="form login">
+									<div class="login__body">
+										<div id="logo-container">
+											<!-- 로고 이미지 추가 -->
+											<img src="./favicon.ico" alt="Logo" style="max-width: 100px;">
+											<!-- 로고 이미지 경로와 크기는 예시입니다. -->
+										</div>
+										<div class="user-login">
+
+											<div class="form__field">
+												<input type="id" placeholder="id" name="memId">
+											</div>
+											<div class="form__field">
+												<input type="password" placeholder="Password" name="memPwd">
+											</div>
+										</div>
+
+										<footer class="login__footer">
+											<input type="submit" value="Login">
+											<p>
+												<span class="icon icon--info">?</span><a href="/sigin">아이디가
+													없으신가요?</a>
+											</p>
+										</footer>
+								</form>
+								<!-- 네이버 로그인 버튼 -->
+								<div class="social-login">
+									<a th:href="${kakaoUrl}" class="kakao-login"> <img
+										src="./images/kakao_login_medium_narrow.png" alt="카카오톡 로그인" style="gap: 3px;">
+									</a> <a th:href="${naverUrl}" class="naver-login"> <img
+										src="./images/naverbtn.png" alt="네이버 로그인">
+									</a>
+								</div>
+							</div>
+						</body>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>

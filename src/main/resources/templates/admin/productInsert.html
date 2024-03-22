@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/admincommon/adminheader::headerLayout"></th:block>
+<body>
+	<th:block layout:fragment="content">
+		<!-- 메인파트 -->
+
+		<main>
+		<div class="container-fluid px-4">
+			<!-- 약 입력페이지를 위한 입력 폼 -->
+			<br>
+			<h1>약품 등록</h1>
+			<hr>
+			<form action="/admin/productInsert" method="post" enctype="multipart/form-data">
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">약
+						이름</span> <input type="text" class="form-control"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-default" name="itemName">
+					<span class="input-group-text" id="inputGroup-sizing-default">약
+						영문명</span> <input type="text" class="form-control"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-default" name="itemEng">
+					<span class="input-group-text" id="inputGroup-sizing-default">약 종류</span> <input type="text" class="form-control"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-default" name="itemType">
+				</div>
+				<div class="input-group mb-3">
+					<select class="form-select form-select" name="catName">
+						<option th:each="list : ${lists}" th:value="${list.catName}" th:text="${list.catName}"></option>
+					</select>
+				</div>
+				<br>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">판매
+						가격</span> <input type="number" class="form-control"
+						aria-describedby="inputGroup-sizing-default" name="itemPrice">
+					<span class="input-group-text" id="inputGroup-sizing-default">재고</span>
+					<input type="number" class="form-control"
+						aria-describedby="inputGroup-sizing-default" name="itemCnt">
+					<span class="input-group-text" id="inputGroup-sizing-default">복용수</span>
+					<input type="number" class="form-control"
+						aria-describedby="inputGroup-sizing-default" name="itemToday"
+						value="1" />
+				</div>
+				<div class="input-group mb-3">
+					<label class="input-group-text" for="inputGroupFile01">약
+						이미지</label> <input type="file" class="form-control" id="inputGroupFile01"
+						name="file" />
+				</div>
+				<div class="input-group">
+					<span class="input-group-text">약품 설명</span>
+					<textarea class="form-control h-25" rows="10" name="itemContent" ></textarea>
+				</div>
+				<br>
+				<button type="submit" class="btn btn-success">등록</button>
+				<button type="reset" class="btn btn-danger">취소</button>
+
+			</form>
+		</div>
+		</main>
+	</th:block>
+</body>
+<th:block th:replace="/admincommon/footer::footerLayout"></th:block>
+</html>

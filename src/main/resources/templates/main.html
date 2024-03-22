@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!-- 인코딩 방식 변경 -->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 오픈그래프 소스 -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="yakpul" />
+<meta property="og:site_title" content="Medical yakpul Korea" />
+<meta property="og:site_description" content="약+ 당신의 증상을 호전시켜주는 진통제" />
+<meta property="og:site_image" content="./favicon.png" />
+<meta property="og:url" content="http://Medical.yakpul" />
+
+<!-- 트위터 카드(Twitter Cards) -->
+<meta proerty="twitter:card" content="Hello" />
+<meta proerty="twitter:site" content="yakpul" />
+<meta proerty="twitter:title" content="Medical yakpul Korea" />
+<meta proerty="twitter:description" content="약+ 당신의 증상을 호전시켜주는 진통제" />
+<meta proerty="twitter:image" content="./css/yakpul.seo.png" />
+<meta proerty="twitter:url" content="http://Medical.yakpul" />
+
+<title>Medical yakpul korea</title>
+<!-- 탭 아이콘 연결 파비곤 연결 -->
+<link rel="icon" href="./favicon.png" />
+
+<!-- reset 라이브러리 연결 -->
+<link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
+	rel="stylesheet" />
+
+<!-- 구글 아이콘 연결 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link
+	href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+	rel="stylesheet">
+
+<!-- css 연결 -->
+<link rel="stylesheet" href="./css/main2.css" />
+<link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+<!-- 구글폰트의 나눔고딕폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+	integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- 스와이퍼 라이브러리 추가 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script
+	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- 유튜브 추가 -->
+<script defer th:src="@{/js/youtube.js}"></script>
+
+<!-- ScrollMagic (스크롤 매직) 라이브러리 추가-->
+<script defer th:src="@{/js/main.js}"></script>  
+
+
+
+</head>
+
+<body>
+	<header>
+		<!-- header 영역의 시작 -->
+		<th:block th:replace="/common/header1::headerLayout1">
+		</th:block>
+	</header>
+	<!-- header 영역의 끝 -->
+	<!-- 첫번째 section 시작 (광고메인) -->
+	<section class="visual">
+		<div class="inner">
+			<div class="title">
+				<button type="button" class="custom-button btn--reverse"
+					onclick="clickTT()">판매상품보기</button>
+				<div class="title fade-in">
+					<img src="./images/약품2.png" alt="약1" class="pro1_image" />
+				</div>
+				<div class="title fade-in">
+					<img src="./images/약품3.png" alt="약2" class="pro2_image" />
+				</div>
+				<div class="title fade-in">
+					<img src="./images/약품4.png" alt="약3" class="pro3_image" />
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- 두번째 section 시작 (nav 메인) -->
+	<section>
+		<div class="secondmenu">
+			<div class="navigation-bar">
+				<a href="/anotherMypage"> <img
+					src="./images/free-icon-pharmacist-4320429.png" alt="내약조회"> <span>내약조회</span>
+				</a> <a href="/search"> <img
+					src="./images/free-icon-online-pharmacy-4969039.png" alt="약품검색">
+					<span>약품검색</span>
+				</a> 
+				<a href="/item"> <img
+					src="./images/free-icon-trolley-4228647.png" alt="약국검색">
+					<span>약품구매</span>
+				</a>
+				<a href="/map"> <img
+					src="./images/free-icon-online-pharmacy-7886828.png" alt="약국검색">
+					<span>약국검색</span>
+				</a> 
+				<a href="/Cart"> <img
+					src="./images/free-icon-trolley-4228647.png" alt="배송정보"> <span>장바구니</span>
+				</a> <a href="/faq"> <img src="./images/FAQ.png" alt="FAQ">
+					<span>FAQ</span>
+				</a> <a href=/board/list> <img src="./images/문의.png" alt="문의"> <span>1:1문의</span>
+	</a> <a href="/notice/list"> <img src="./images/공지.png" alt="공지사항"><span>공지사항</span>
+				</a>
+			</div>
+		</div>
+	</section>
+	<!-- 아이콘 메뉴바 끝 -->
+
+	<!-- 공지사항 목록과 토큰 -->
+	<!-- NOTICE -->
+	<section class="notice">
+
+		<!-- NOTICE LINE -->
+		<div class="notice-line">
+			<div class="bg-left"></div>
+			<div class="bg-right"></div>
+			<div class="inner">
+
+				<div class="inner__left">
+					<h2>공지사항</h2>
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<a href="/notice/list" class="text1">[공지]스테로이드 비염약 제품에 대한 성분
+									공지! </a>
+							</div>
+						</div>
+					</div>
+					<a href="/notice/list" class="notice-line__more"> <span
+						class="material-icons">add_circle</span>
+					</a>
+
+				</div>
+				<!-- 뉴스 기사 크롤링 -->
+				<div class="inner__right">
+					<h2 id="title2">신약뉴스</h2>
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<a href="javascript:void(0)"> 피 똥싸는 이유, 사실 코딩때문이다?</a>
+							</div>
+						</div>
+					</div>
+					<a href="http://www.newsmp.com/" class="notice-line__more"> <span
+						class="material-icons">add_circle</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- 공지사항 부분 끝 -->
+	<!-- 메인페이지 상품 진열 (1)  -->
+	<section>
+		<div class="promotion">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="./images/001.png" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="./images/002.png" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="./images/003.png" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="./images/004.png" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="./images/005.png" alt="">
+					</div>
+					<div class="swiper-slide">
+						<img src="./images/006.png" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- 유튜브 비디오 -->
+	<section class="youtube">
+		<div class="youtube__area">
+			<div id="player"></div>
+		</div>
+		<div class="youtube__tags">
+			<!-- 인스타그램 스타일의 태그 -->
+			<div class="tag_title">가장 많이 찾는 약품 BEST</div>
+			<div class="tag">01. 타이레놀</div>
+			<div class="tag">02. 이지엔</div>
+			<div class="tag">03. 비타엔뷰</div>
+			<div class="tag">04. 장티놀정</div>
+			<div class="tag">05. 슈니펜정</div>
+			<div class="tag">06. 제아코정</div>
+		</div>
+		<div class="youtube__cover"></div>
+	</section>
+
+	<br>
+	<!-- 고정이미지 -->
+	<section class="season-product scroll-spy">
+		<div class="inner">
+			<img src="./images/product2.png" class="floating2" /> <img
+				src="./images/product3_2.png" class="floating3" />
+			<div class="text-group">
+				<p class="title">건강보조제품, 찾고 계신가요?</p>
+				<p class="description">합리적인 가격에 선물해 보세요.</p>
+				<div class="more">이기회 놓쳐도 괜찮으시겠어요?</div>
+				<br> <a href="javascript:void(0)" style="background-color: #278B81; font-weight: 700; text-shadow: none; color:aliceblue"  class="btn">자세히 보기</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="reserve-store">
+		<div class="inner"></div>
+	</section>
+
+	<!-- 푸터 작업 영역의 시작 -->
+
+	<footer>
+		<th:block th:replace="/common/footer1::footerLayout1"></th:block>
+	</footer>
+	
+	<script>
+const fadeEls = document.querySelectorAll('.visual .fade-in');
+fadeEls.forEach(function(fadeEls, index) {
+gsap.to(fadeEls, 1, {
+    delay: (index + 1) * .7, //0.7, 1.4, 2.1, 2.7 동작
+    opacity: 1
+});
+});
+
+// 스와이퍼
+
+new Swiper(' .promotion .swiper-container', {
+    slidesPerView: 3, //한번에 보여줄 슬라이드의 개수
+    spaceBetween: 5, //슬라이드 사이의 여백
+    centeredSlides: true, //1번 슬라이드가 가운데 보이는 명령어
+    loop: true
+}
+);
+
+
+/* 스크롤 매직 */
+const spyEls = document.querySelectorAll('section.scroll-spy');
+spyEls.forEach(function (spyEl) {
+    new ScrollMagic
+    .Scene({
+        triggerElement: spyEl, // 보여질 여부르르 감시할 요소를 보여짐
+        triggerHook: .8
+    })
+    .setClassToggle(spyEl, 'show')
+    .addTo(new ScrollMagic.Controller());
+});
+
+  document.querySelector('.floating2').addEventListener('click', function() {
+    alert('You clicked on the first product image!');
+  });
+
+  document.querySelector('.floating3').addEventListener('click', function() {
+    alert('You clicked on the second product image!');
+  });
+
+</script>
+</body>
+
+</html>

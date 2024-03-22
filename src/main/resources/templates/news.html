@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script defer th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script defer
+	th:src="@{//cdn.jsdelivr.net/npm/jquery.marquee@1.6.0/jquery.marquee.min.js}"
+	type="text
+/javascript"></script>
+<script>
+document.addEventListener('DOMContentLoaded', _ => {
+	  const items = [...document.getElementsByClassName('list__item')];
+	  const containerElem = document.getElementById('containerElem');
+	  const leftSideOfContainer = containerElem.getBoundingClientRect().left;
+	  const listElem = document.getElementById('list');
+	  let currentLeftValue = 0;
+
+	  window.setInterval(animationLoop, 50);
+
+	  function animationLoop() {
+	    const firstListItem = listElem.querySelector('.list__item:first-child');
+
+	    let rightSideOfFirstItem = firstListItem.getBoundingClientRect().right;
+
+	    if(rightSideOfFirstItem == leftSideOfContainer){
+	      currentLeftValue = -1;
+	      listElem.appendChild(firstListItem);
+	    }
+
+	    listElem.style.marginLeft = `${currentLeftValue}px`;
+	    currentLeftValue--;
+	  }
+	});
+</script>
+
+<style type="text/css">
+.wrap { margin: 200px auto; width: 800px; }
+.wrap--logobar { background-color:#008e61; overflow: hidden; position: relative;height:50px; }
+.list { list-style: none; display: flex; margin: 0; padding: 0; position: absolute; width: 100%; margin-left: 0; }
+.list__item { width: 70%; flex-grow: 0; flex-shrink: 0; text-align: center; padding: 0px 5px; color:#fff;font-size:12px;line-height:50px}
+</style>
+</head>
+<body>
+<div class="wrap wrap--logobar" id="containerElem">
+  <ul class="list" id="list" >
+    <li class="list__item" th:each="news : ${news}" th:text="${news.subject}"></li>
+  </ul>
+</div>
+</body>
+</html>

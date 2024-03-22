@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+	<th:block th:if="${ session.id==null}">
+		<script>
+		alert("아이디 또는 비밀번호가 틀렸습니다");
+		location.href = '/login';
+		</script>
+	</th:block>
+</head>
+</html>

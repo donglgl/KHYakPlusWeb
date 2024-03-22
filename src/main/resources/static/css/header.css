@@ -1,0 +1,317 @@
+@font-face {
+  font-family: 'MBC1961GulimM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* �늿�닕�뒳 �꽭醫낅퀝�썝泥� */
+@font-face {
+  font-family: 'SejonghospitalBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/SejonghospitalBold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 1.2rem;
+
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+
+  --box-shadow: 0 5rem 5rem var(--color-light);
+
+
+  --logo-background: #F4F5EF;
+  --logo2-background: #D5ECF2;
+
+  --category-tab-color: #656565;
+
+}
+/* backgroundcolor: --logo-background
+    background-color: var(--color-background); */
+body {
+  color: #3333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.inner {
+  position: relative;
+  width: 1400px;
+  margin: 0 auto;
+  border-bottom: 1px solid #c8c8c8;
+}
+
+.btn {
+  width: 130px;
+  padding: 10px;
+  border: 2px solid #3333;
+  border-radius: 5px;
+  color: #000;
+  font-size: 1em;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+
+/* 諛섏쟾 */
+.btn.btn--reverse {
+  background-color: #333;
+  color: fff;
+}
+
+/* 諛섏쟾�맂 寃껋쓣 �썝�옒��濡� �룎�븘媛� */
+.btn.btn--reverse:hover {
+  background-color: transparent;
+  color: #333;
+}
+
+.btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn.btn--greenwhite {
+  color: #1B9C85;
+  border-color: #166ed3;
+}
+
+.btn-btn--greenwhite:hover {
+  color: #F4F5EF;
+  background-color: #166ed3;
+}
+
+/* header */
+header {
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  /*�삤瑜몄そ 愿묎퀬 諛곗튂瑜� �쐞�빐 re ���떊 flexd濡� �꽕�젙*/
+  top: 0;
+  z-index: 9;
+}
+
+/* inner媛� 遺�紐⑥슂�냼 */
+header>.inner {
+  height: 120px;
+}
+
+/*遺�紐⑥슂�냼 湲곗��쑝濡� 諛곗튂*/
+header .logo {
+  height: 75px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  left: 0;
+}
+
+/* header ���쓽 sub-menu / ul.menu / li / a / input  */
+header .sub-menu {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+  font-size: 20px;
+
+}
+
+
+/* menu �룿�듃�뒗 �떎瑜� �룿�듃濡� �쟻�슜�뻽�뒿�땲�떎.*/
+header .sub-menu ul.menu {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+}
+
+header .sub-menu ul.menu li {}
+
+/* �듅�젙�븳 �럹�씠吏�濡� �씠�룞�븯湲� �쐞�빐�꽌 �겢由� 
+block�쁺�뿭�씠湲곕븣臾몄뿉 理쒕��븳 �뒛�뼱�궓*/
+header .sub-menu ul.menu li a {
+  font-size: 12px;
+  padding: 11px 16px;
+  display: block;
+  color: var(--category-tab-color);
+  text-decoration: none;
+}
+
+
+header .sub-menu ul.menu li {
+  position: relative;
+}
+
+/*媛��긽�꽑�깮�옄*/
+header .sub-menu ul.menu li::before {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 12px;
+  background-color: #e5e5e5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+}
+
+/*�쉶�썝媛��엯 �쇊履� 援щ텇�꽑 �뾾�븷踰꾨━湲�*/
+header .sub-menu ul.menu li:first-child:before {
+  display: none;
+}
+
+/*留덉슦�뒪 媛뽯떎��硫� 硫붾돱 �깋源� 寃��젙�깋�쑝濡� 蹂��븯湲�*/
+header .sub-menu ul.menu li a:hover {
+  color: #000;
+}
+
+header .sub-menu .search {
+  height: 34px;
+  position: relative;
+}
+
+header .sub-menu .search input {
+  width: 36px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  background-color: #fff;
+  color: #363949;
+  font-size: 12px;
+  transition: width .4s;
+}
+
+header .sub-menu .search input:focus {
+  width: 190px;
+  border-color: #262d2c;
+}
+
+/*�룍蹂닿린 紐⑥뼇*/
+header .sub-menu .search .material-icons {
+  height: 24px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+}
+
+header .sub-menu .search.focused .material-icons {
+  opacity: 0;
+}
+
+header .main-menu {
+  position: absolute;
+  bottom: -17px;
+  right: 0;
+  z-index: 1;
+  display: flex;
+}
+
+header .main-menu .item {
+  color: #262d2c;
+}
+
+header .main-menu .item .item__name {
+  padding: 5px 20px 34px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3em;
+}
+
+/* 硫붿씤 硫붾돱�쓽 媛곴컖�쓽 �슚怨�! */
+header .main-menu .item:hover .item__name {
+  background-color: #539e87;
+  color: blanchedalmond;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+header .main-menu .item .item__contents {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none;
+}
+
+header .main-menu .item:hover .item__contents {
+  display: block;
+}
+
+header .main-menu .item .item__contents .contents__menu {
+  background-color: #2c2a29;
+  height: 200px;
+}
+
+/* 而⑦뀗痢� 硫붾돱 �븞�뿉 �엳�뒗 ul �깭洹� (�옄�떇�꽑�깮�옄濡� �꽕�젙)*/
+
+/* hover 硫붾돱諛� */
+header .main-menu .item .item__contents .contents__menu>ul {
+  display: flex;
+  padding: 20px 3px;
+}
+
+header .main-menu .item .item__contents .contents__menu>ul>li {
+  width: 220px;
+}
+
+/* hover �븞�쓽 �젣紐⑸뱾 */
+header .main-menu .item .item__contents .contents__menu>ul>li>h4 a {
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #ffff;
+  text-decoration-line: none;
+}
+
+header .main-menu .item .item__contents .contents__menu>ul>li h4 {
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #ffff;
+}
+
+
+header .main-menu .item .item__contents .contents__menu>ul>li>ul>li a {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+  text-decoration-line: none;
+}
+
+/* 링크가 걸리기 전까지 임의로 설정을 한다*/
+header .main-menu .item .item__contents .contents__menu>ul>li>ul li {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+}
+
+header .main-menu .item .item__contents .contents__texture {
+  padding: 26px 0;
+  font-size: 12px;
+}
+
+/* hover content�쓽  css */
+header .main-menu .item .item__contents .contents__texture h4 {
+  padding: 3px 0 12px 0;
+  color: #539e87;
+  font-weight: 700;
+  font-size: 12px;
+}

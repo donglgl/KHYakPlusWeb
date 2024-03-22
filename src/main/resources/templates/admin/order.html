@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/admincommon/adminheader::headerLayout"></th:block>
+ <script defer src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    function change(button) {
+        console.log("작동은함");
+        var orderRow = $(button).closest('tr');
+        var orderNum = orderRow.find('td:first').text(); // 첫 번째 <td> 요소에 있는 주문 번호를 가져옵니다.
+        var deliveryOption = orderRow.find('option:selected').val();
+        const data = {
+            orderNum: parseInt(orderNum),
+            deliveryOption: deliveryOption
+        };
+		$.ajax({
+			type : 'POST',
+			url : '/admin/order/update',
+			data : data,
+			success : function(response) {
+				console.log('데이터 전송 성공:', response);
+				location.href = "/admin/order";
+				 //$('#card-body').replaceWith(response);
+			},
+			error : function(xhr, status, error) {
+				console.error('데이터 전송 실패:', status, error);
+			}
+		});
+        console.log(data);
+    }
+</script>
+<body >
+	<th:block layout:fragment="content">
+	
+		<!-- 메인파트 -->
+
+		<main>
+		<div class="container-fluid px-4">
+			<main>
+			<div class="container-fluid px-4">
+				<h1 class="mt-4">Order</h1>
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item"><a href="index.html">backhome</a></li>
+					<li class="breadcrumb-item active">Tables</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">주문을 확인하는 관리자 페이지 입니다</div>
+				</div>
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-table me-1"></i> 멤버
+					</div>
+					<div class="card-body">
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>주문 번호</th>
+									<th>주문자 이름</th>
+									<th>주문주소</th>
+									<th>상세 주소</th>
+									<th>전화번호</th>
+									<th>가격</th>
+									<th>주문 목록</th>
+									<th>요청</th>
+									<th>주문날짜</th>
+									<th>주문 상태</th>
+									<th>주문 상태 설정</th>
+									<th>확정</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="orderlist : ${orderlists}" th:id="'orderRow_' + ${orderlist.orderNum}">
+									<td   th:text="${orderlist.orderNum}"></td>
+									<td th:text="${orderlist.memName}"></td>
+									<td th:text="${orderlist.orderAddr}"></td>
+									<td th:text="${orderlist.orderDetail}"></td>
+									<td th:text="${orderlist.orderPh}"></td>
+									<td th:text="${orderlist.orderPrice}"></td>
+									<td th:text="${orderlist.orderItem}"></td>
+									<td th:text="${orderlist.orderDate}"></td>
+									<td th:text="${orderlist.orderReq}"></td>
+									<td th:text="${orderlist.orderCheck}"></td>
+									<td><select name="orderCheck" id ="orderCheck">
+											<option value="결제 완료">결제 완료</option>
+											<option value="배송중">배송중</option>
+											<option value="배송완료">배송완료</option>
+									</select></td>
+									<td><button type="button" class="btn btn-success"
+											onclick="change(this)">
+											주문상태변경</button> 	
+									</td>
+									</from>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			</main>
+		</div>
+		</main>
+
+
+
+
+
+	</th:block>
+</body>
+<th:block th:replace="/admincommon/footer::footerLayout"></th:block>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/admincommon/adminheader::headerLayout"></th:block>
+<body>
+	<th:block layout:fragment="content">
+
+		<!-- 메인파트 -->
+
+		<main>
+		<div class="container-fluid px-4">
+			<main>
+			<div class="container-fluid px-4">
+				<h1 class="mt-4">Tables</h1>
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item"><a href="/admin">관리자페이지로</a></li>
+					<li class="breadcrumb-item active">Tables</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">
+						
+					</div>
+				</div>
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-table me-1"></i> 멤버
+					</div>
+					<div class="card-body">
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>사용자 번호</th>
+									<th>아이디</th>
+									<th>이름</th>
+									<th>별명</th>
+									<th>휴대전화</th>
+									<th>생년원일</th>
+									<th>이메일</th>
+									<th>성별</th>
+									<th>정지</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="list : ${lists}">
+									<td th:text="${list.memNum}"></td>
+									<td th:text="${list.memId}"></td>
+									<td th:text="${list.memName}"></td>
+									<td th:text="${list.memNickName}"></td>
+									<td th:text="${list.memPh}"></td>
+									<td th:text="${list.memBirthday}"></td>
+									<td th:text="${list.memEmail}"></td>
+									<td th:text="${list.memGen}"></td>
+									<td>
+										<button type="button" class="btn btn-danger"
+											th:onclick="|location.href='@{/admin/memdelete(memNum=${list.memNum})}'|">삭제</button>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			</main>
+		</div>
+		</main>
+
+
+	</th:block>
+</body>
+<th:block th:replace="/admincommon/footer::footerLayout"></th:block>
+</html>

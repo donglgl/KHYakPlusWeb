@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+
+
+const config ={
+		apikey:""
+}
