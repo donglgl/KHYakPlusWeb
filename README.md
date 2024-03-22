@@ -1,10 +1,10 @@
 
 ---
-##프로젝트명: 약플
+## 프로젝트명: 약플
 
 
 >
-> ###팀원
+> ### 팀원
 >
 >김동현,김명주,김지원,박보령,안은선,이해미
 
@@ -18,7 +18,7 @@
 
 
 >
-> ###사용 기술:
+> ### 사용 기술:
 >
 >
 >Front-End:<img alt="Static Badge" src="https://img.shields.io/badge/css3-%230000?logo=css3&logoColor=white&color=%231572B6">
@@ -30,7 +30,7 @@
            <img alt="Static Badge" src="https://img.shields.io/badge/mysql-%230000?logo=mysql&logoColor=white&color=%234479A1">
 ---
 ---
-##김동현
+## 김동현
 
 
 > 담당파트:관리자페이지,지도페이지
