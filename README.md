@@ -47,3 +47,6 @@
 ___
 ## 관리자 페이지
 ![관리자페이지](https://github.com/donglgl/KHYakPlusWeb/assets/7522774/196fa472-2768-47b8-b099-f0d20eddea1c)
+![관리자페이지2](https://github.com/donglgl/KHYakPlusWeb/assets/7522774/c62393e2-9a0c-454d-91c9-fdfc62ccfb89)
+![관리자페이지3](https://github.com/donglgl/KHYakPlusWeb/assets/7522774/8a1a7903-1ed8-4b66-8b77-392feddb4cbb)
+
