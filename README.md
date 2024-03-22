@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=Soft&color=278b81&height=150&section=header&text=약플&fontSize=70" />
+<img src="https://capsule-render.vercel.app/api?type=Soft&color=278b81&height=150&section=header&text=약플&fontSize=70&&strokeWidth=3"  />
 
 ---
 ##프로젝트명: 약플
