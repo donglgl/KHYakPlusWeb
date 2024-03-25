@@ -1,6 +1,7 @@
 package com.admin.layout.service;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,9 @@ import java.util.Set;
 public class ApiService2 {
 	
 	
+
+	@Value("${pill.api.secret2}")
+	private String api;
 	
 	
 	//전체 검색 서비스
@@ -64,7 +68,7 @@ public class ApiService2 {
 	    try {
 	        // API 호출을 위한 URL 설정
 	        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01");
-	        urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=1dx8Z%2B4bt4GPV%2BSy1Brh7elTQVEoTL14jl%2BfxrcNL71gRS8jkIF5fsScLvCKSGfpQ%2FQpS6dR%2F7scT5CwkKMOYQ%3D%3D"); /* 서비스키 */
+	        urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "="+api); /* 서비스키 */
 	        urlBuilder.append("&" + URLEncoder.encode("item_image", "UTF-8") + "=" + URLEncoder.encode("xml", "UTF-8")); /* 이미지 */
 	        
 	        if (itemName != null) {
