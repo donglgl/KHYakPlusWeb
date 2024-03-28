@@ -26,9 +26,8 @@
             <img alt="Static Badge" src="https://img.shields.io/badge/javascript-%230000?logo=javascript&logoColor=white&color=%23F7DF1E">
             
            Back-End:
-            <img alt="Static Badge" src="https://img.shields.io/badge/SpringBoot-%230000?logo=springboot&logoColor=white&color=%236DB33F">
-           <img alt="Static Badge" src="https://img.shields.io/badge/mysql-%230000?logo=mysql&logoColor=white&color=%234479A1">
->
+            <img alt="Static Badge" src="https://img.shields.io/badge/SpringBoot-%230000?logo=springboot&logoColor=white&color=%236DB33F"><img alt="Static Badge" src="https://img.shields.io/badge/mysql-%230000?logo=mysql&logoColor=white&color=%234479A1">
+
 >FrameWork:<img alt="Static Badge" src="https://img.shields.io/badge/bootstrap-white?logo=bootstrap&logoColor=white&color=%237952B3">
   <img alt="Static Badge" src="https://img.shields.io/badge/thymeleaf-%230000?logo=thymeleaf&logoColor=white&color=%23005F0F">
 ---
