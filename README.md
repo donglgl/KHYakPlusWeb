@@ -29,6 +29,9 @@
 
 >FrameWork:<img alt="Static Badge" src="https://img.shields.io/badge/bootstrap-white?logo=bootstrap&logoColor=white&color=%237952B3"><img alt="Static Badge" src="https://img.shields.io/badge/thymeleaf-%230000?logo=thymeleaf&logoColor=white&color=%23005F0F">
 ---
+## ERD 설계
+![KHFinal (3)](https://github.com/donglgl/YakPlusWeb/assets/7522774/0a8f5fce-c779-45f7-b6dc-c8dcb8eaf338)
+
 ---
 ## 김동현
 
